@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96684809575",
+    "project_id": "sweetshop-8622b",
+    "storage_bucket": "sweetshop-8622b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96684809575:android:55582b276d75e74ca7a3c2",
+        "android_client_info": {
+          "package_name": "com.botirovka.sweetshopcompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYrGhDV1Dhz_K7tOMBtapKUDKnFWweTVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
