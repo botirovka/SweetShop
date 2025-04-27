@@ -17,6 +17,7 @@ import com.botirovka.sweetshopcompose.data.FirebaseRepository
 import com.botirovka.sweetshopcompose.data.Response
 import com.botirovka.sweetshopcompose.ui.composable.FindProductsScreen
 import com.botirovka.sweetshopcompose.ui.composable.LoginScreenUI
+import com.botirovka.sweetshopcompose.ui.composable.MainScreen
 import com.botirovka.sweetshopcompose.ui.composable.SignUpScreenUI
 import com.botirovka.sweetshopcompose.ui.composable.SweetShopSplashScreen
 import com.botirovka.sweetshopcompose.ui.theme.SweetShopComposeTheme
@@ -81,7 +82,7 @@ fun SweetShopApp() {
             SignUpScreenUI(navController)
         }
         composable(route = "home") {
-            FindProductsScreen()
+            MainScreen()
         }
     }
 }
