@@ -14,6 +14,7 @@ import kotlinx.coroutines.tasks.await
 object FirebaseRepository {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     var user = User()
+    var currentPie = Pie()
     fun userUid(): String = auth.currentUser?.uid ?: ""
     fun isUserLoggedIn(): Boolean = auth.currentUser != null
     suspend fun logout() = auth.signOut()
@@ -62,6 +63,8 @@ object FirebaseRepository {
                     userDocRef.update(
                         mapOf(
                             "likedPies" to user.likedPies,
+                            "cartPies" to user.cartPies,
+                            "listOrder" to user.listOrder
                         )
                     ).await()
                 } else {

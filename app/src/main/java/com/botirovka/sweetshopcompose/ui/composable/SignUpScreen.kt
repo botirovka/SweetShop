@@ -97,7 +97,10 @@ fun SignUpScreenUI(navController: NavHostController) {
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next
+            ),
             shape = RoundedCornerShape(8.dp)
         )
 
@@ -107,10 +110,14 @@ fun SignUpScreenUI(navController: NavHostController) {
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Done
+            ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                val image =
+                    if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
                 val description = if (passwordVisible) "Hide password" else "Show password"
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(imageVector = image, contentDescription = description)
@@ -140,6 +147,7 @@ fun SignUpScreenUI(navController: NavHostController) {
                                 popUpTo("signup") { inclusive = true }
                             }
                         }
+
                         is Response.Error -> {
                             errorMessage = response.message
                         }
@@ -155,7 +163,11 @@ fun SignUpScreenUI(navController: NavHostController) {
         ) {
             Text(
                 text = if (isLoading) "Signing up..." else "Sign Up",
-                style = TextStyle(color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
             )
         }
 
@@ -176,7 +188,6 @@ fun SignUpScreenUI(navController: NavHostController) {
         Spacer(modifier = Modifier.weight(1f))
     }
 }
-
 
 
 @Preview(showBackground = true)

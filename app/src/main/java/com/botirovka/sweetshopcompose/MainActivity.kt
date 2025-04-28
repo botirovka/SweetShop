@@ -82,8 +82,9 @@ fun SweetShopApp() {
             SignUpScreenUI(navController)
         }
         composable(route = "home") {
-            MainScreen()
+            MainScreen(navController)
         }
+
     }
 }
 

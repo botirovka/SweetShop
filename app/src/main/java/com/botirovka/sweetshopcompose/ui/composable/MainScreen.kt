@@ -16,14 +16,13 @@ import androidx.navigation.compose.rememberNavController
 import com.botirovka.sweetshopcompose.R
 
 @Composable
-fun MainScreen() {
+fun MainScreen(mainNavController: NavHostController) {
     val navController = rememberNavController()
-
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
-            NavigationGraph(navController = navController)
+            NavigationGraph(navController = navController, mainNavController)
         }
     }
 }
@@ -65,15 +64,16 @@ fun BottomNavigationBar(navController: NavHostController) {
 }
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, mainNavController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.Explore.route
     ) {
-        composable(Screen.Explore.route) { FindProductsScreen() }
-        composable(Screen.Cart.route) { CartScreen() }
-        composable(Screen.Favourite.route) { FindProductsScreen(true) }
-        composable(Screen.Account.route) { AccountScreen() }
+        composable(Screen.Explore.route) { FindProductsScreen(navController = navController) }
+        composable(Screen.Cart.route) { CartScreen(navController) }
+        composable(Screen.Favourite.route) { FindProductsScreen(true,navController) }
+        composable(Screen.Account.route) { AccountScreen(mainNavController) }
+        composable("pie") { PieDetailScreen(navController) }
     }
 }
 
@@ -83,16 +83,9 @@ private fun currentRoute(navController: NavHostController): String? {
     return navBackStackEntry?.destination?.route
 }
 
-
-
-@Composable
-fun AccountScreen() {
-    Text("Account Screen")
-}
-
 sealed class Screen(val route: String, val title: String, @DrawableRes val icon: Int) {
     object Explore : Screen("explore", "Explore", R.drawable.ic_explore)
-    object Cart : Screen("cart", "Cart", R.drawable.ic_explore)
-    object Favourite : Screen("favourite", "Favourite", R.drawable.ic_explore)
-    object Account : Screen("account", "Account", R.drawable.ic_explore)
+    object Cart : Screen("cart", "Cart", R.drawable.ic_cart)
+    object Favourite : Screen("favourite", "Favourite", R.drawable.ic_favourite)
+    object Account : Screen("account", "Account", R.drawable.ic_account)
 }
