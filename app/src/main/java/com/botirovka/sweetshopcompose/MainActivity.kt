@@ -15,7 +15,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.botirovka.sweetshopcompose.data.FirebaseRepository
 import com.botirovka.sweetshopcompose.data.Response
-import com.botirovka.sweetshopcompose.ui.composable.FindProductsScreen
 import com.botirovka.sweetshopcompose.ui.composable.LoginScreenUI
 import com.botirovka.sweetshopcompose.ui.composable.MainScreen
 import com.botirovka.sweetshopcompose.ui.composable.SignUpScreenUI
@@ -29,7 +28,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContent {
             SweetShopComposeTheme {
                 Surface(
@@ -63,12 +61,13 @@ class MainActivity : ComponentActivity() {
 fun SweetShopApp() {
     val navController = rememberNavController()
     val startDestination: String by lazy {
-        if(FirebaseRepository.isUserLoggedIn()){
-            "home"
-        }
-        else{
-            "splash"
-        }
+        "splash"
+//        if(FirebaseRepository.isUserLoggedIn()){
+//            "home"
+//        }
+//        else{
+//            "splash"
+//        }
     }
 
     NavHost(navController = navController, startDestination = startDestination) {

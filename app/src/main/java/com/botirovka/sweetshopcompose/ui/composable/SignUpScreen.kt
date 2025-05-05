@@ -79,13 +79,13 @@ fun SignUpScreenUI(navController: NavHostController) {
 
         Text(
             modifier = Modifier.align(Alignment.Start),
-            text = "Sign Up",
+            text = "Sign Upp",
             style = MaterialTheme.typography.headlineLarge
         )
 
         Text(
             modifier = Modifier.align(Alignment.Start),
-            text = "Enter your emails and password",
+            text = "Enter your email and password",
             style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray)
         )
 

@@ -144,7 +144,7 @@ fun PieDetailScreen(navController: NavHostController) {
 
         Text(
             text = "Product Detail",
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(8.dp))

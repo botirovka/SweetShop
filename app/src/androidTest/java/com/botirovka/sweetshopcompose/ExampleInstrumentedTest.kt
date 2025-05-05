@@ -1,24 +1,85 @@
 package com.botirovka.sweetshopcompose
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-import org.junit.Assert.*
+class UiTest {
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.botirovka.sweetshopcompose", appContext.packageName)
+    fun appLaunchesAndDisplaysSplashScreen() {
+        composeTestRule
+            .onNodeWithText("Sweet Shop")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithText("Get Started")
+            .assertIsDisplayed()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun testLoginScreenContent() {
+        composeTestRule.onNodeWithText("Get Started").performClick()
+
+        composeTestRule.onNodeWithText("Login").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Enter your email and password").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Email").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Password").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Forgot Password?").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Don't have an account? ").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Signup").assertIsDisplayed()
+    }
+
+    @Test
+    fun testLogin() {
+        composeTestRule.onNodeWithText("Get Started").performClick()
+
+        composeTestRule.onNodeWithText("Email").performTextInput("tesst@gmail.com")
+        composeTestRule.onNodeWithText("Password").performTextInput("12345678")
+
+        composeTestRule.onNodeWithText("Log In").performClick()
+
+        Thread.sleep(2000)
+        composeTestRule.onNodeWithText("Explore")
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun testSignUpScreenContent() {
+        composeTestRule.onNodeWithText("Get Started").performClick()
+        composeTestRule.onNodeWithText("Signup").performClick()
+
+        composeTestRule.onNodeWithText("Enter your email and password").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Email").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Password").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Login").assertIsDisplayed()
+    }
+
+    @Test
+    fun testSignUpAndCheckBottomMenu() {
+        composeTestRule.onNodeWithText("Get Started").performClick()
+        composeTestRule.onNodeWithText("Signup").performClick()
+
+        composeTestRule.onNodeWithText("Email").performTextInput("test333@gmail.com")
+        composeTestRule.onNodeWithText("Password").performTextInput("12345678")
+
+        composeTestRule.onNodeWithText("Sign Up").performClick()
+
+        Thread.sleep(2000)
+        composeTestRule.onNodeWithText("Explore")
+            .assertIsDisplayed()
+
+        composeTestRule.onNodeWithText("Cart").performClick()
+        Thread.sleep(1000)
+        composeTestRule.onNodeWithText("Favourite").performClick()
+        Thread.sleep(1000)
+        composeTestRule.onNodeWithText("Account").performClick()
+        Thread.sleep(1000)
+        composeTestRule.onNodeWithText("Logout").performClick()
     }
 }
